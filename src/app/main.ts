@@ -3,17 +3,16 @@ import { Component } from "@angular/core"
 @Component({
    selector: "main",
    template: `
-               <button (click)="next()">{{ status[current]  }}</button>
+               <input #task>
+               <button (click)="add(task)">Add</button>
+               <p *ngFor="let e of list"> {{ e }} </p>
               `
 })
 			
 export class Main {
-   current = 0
-   status = [ "Single", "Married", "Divorce" ]
-   next() {
-     this.current++
-     if (this.current >= this.status.length) {
-        this.current = 0
-     }
+   list: Array<string> = [ ] 
+   add(input : any) {
+     this.list.push(input.value)
+     input.value = ""
    }
 }
